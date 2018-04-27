@@ -1,0 +1,127 @@
+﻿@model PlaceUp.Models.Place
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Place</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageData)
+        </dt>
+
+        <dd>
+            @if (@Model.ImageData == null)
+        {
+            <div class="col-md-10">
+                <img width="150" height="150" src="~/Content/Images/no.jpg" />
+            </div>
+        }
+        else
+        {
+        <div class="col-md-10">
+            <img width="300" height="200" src="@Url.Action("GetImage", "Places", new { id = Model.PlaceId })" />
+        </div>
+}
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebSite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        @if (Model.Tags.Count != 0)
+    {
+        <dt>
+            <label>Tags:</label>
+        </dt>
+        foreach (var item in Model.Tags)
+        {
+        <a href="@Url.Action("GetAllByTagId", "Places", new { id = item.TagId })">#@item.Name | </a>
+        }
+
+        }
+        @if (Model.Feedbacks.Count != 0)
+        {
+            <dt>
+                <label>Feedbacks:</label>
+            </dt>
+        foreach (var item in Model.Feedbacks)
+        {
+        <hr />
+        <p>@item.Review </p>
+        <hr />
+        }
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlaceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

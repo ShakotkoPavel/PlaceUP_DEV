@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PlaceUp.Models.Feedback>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Place.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LikeDislike)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Review)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Place.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LikeDislike)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Review)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.FeedbackId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FeedbackId })
+        </td>
+    </tr>
+}
+
+</table>
